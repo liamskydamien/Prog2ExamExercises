@@ -36,4 +36,19 @@ public class Speicher1UnitTest {
             System.out.println(testSpeicher);
         }
     }
+
+    @Test
+    void sorted(){
+        testSpeicher = new SortierterSpeicher<Character>();
+        for(Character character : testArray){
+            testSpeicher.insert(character);
+            //assertTrue(testSpeicher.size() == ++counter);
+            System.out.println(testSpeicher);
+        }
+        for(Character character : testArray){
+            testSpeicher.remove();
+            //assertTrue(testSpeicher.size() == --counter);
+            System.out.println(testSpeicher);
+        }
+    }
 }

@@ -8,18 +8,18 @@ import java.util.Random;
 public class Speicher1<T> implements SpeicherIF<T>{
     //Array to store the values
     @SuppressWarnings("unchecked")
-    private T[] speicher = (T[]) new Object[1];
+    protected T[] speicher = (T[]) new Object[1];
 
     // Counters for inserted Objects and insertions
-    private int counter = 0;
-    private int countOperations = 0;
+    protected int counter = 0;
+    protected int countOperations = 0;
 
     //Random Generation of a value between 3 and 5
-    private Random random = new Random();
-    private int start = random.nextInt(3) + 2;
+    protected Random random = new Random();
+    protected int start = random.nextInt(3) + 2;
 
     @SuppressWarnings("unchecked")
-    protected T[] createDoubleArray(){
+    private T[] createDoubleArray(){
         return (T[]) new Object[speicher.length * 2];
     }
 
