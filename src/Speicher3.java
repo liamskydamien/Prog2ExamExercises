@@ -3,6 +3,6 @@
  * Name:
  * Matrikelnummer:
  */
-public class Speicher {
+public class Speicher3 {
 
 }
