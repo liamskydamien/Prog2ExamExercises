@@ -3,6 +3,10 @@
  * Name:
  * Matrikelnummer:
  */
-public class SortierterSpeicher {
+public class SortierterSpeicher<T extends Comparable<T>> extends Speicher1<T>{
+
+    @Override
+    public void insert(T o){
+    }
 
 }

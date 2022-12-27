@@ -5,78 +5,67 @@ import java.util.Random;
  * Name:
  * Matrikelnummer:
  */
-public class Speicher1<T> implements SpeicherIF{
+public class Speicher1<T> implements SpeicherIF<T>{
+    //Array to store the values
     @SuppressWarnings("unchecked")
-    T[] speicher = (T[]) new Object[1];
+    private T[] speicher = (T[]) new Object[1];
 
-    int counter = 0;
+    // Counters for inserted Objects and insertions
+    private int counter = 0;
+    private int countOperations = 0;
 
-    Random random = new Random();
+    //Random Generation of a value between 3 and 5
+    private Random random = new Random();
+    private int start = random.nextInt(3) + 2;
 
-    int randomValue = random.nextInt(3) + 2;
-    int operationCounter = 1;
-
-
-    private boolean checkIfFull(){
-        return (speicher.length - 1) == counter;
-    }
-
-    private boolean checkIfToMuch(){
-        return (speicher.length / 4 ) >= counter - 1;
+    @SuppressWarnings("unchecked")
+    protected T[] createDoubleArray(){
+        return (T[]) new Object[speicher.length * 2];
     }
 
     @SuppressWarnings("unchecked")
-    private void shrinkPuffer(){
-        T[] speicherSec = (T[]) new Object[speicher.length / 2];
-        for (int i = 0; i < counter - 1; i++){
-            speicherSec[i] = speicher[i];
-        }
-        speicher = speicherSec;
+    private T[] createSplitArray(){
+        return (T[]) new Object[speicher.length / 2];
     }
 
-    @SuppressWarnings("unchecked")
-    private void doublePuffer(){
-        T[] speicherSec = (T[]) new Object[speicher.length * 2];
-        int i = 0;
-        for (T element: speicher){
-            speicherSec[i] = element;
-            i++;
-        }
-        speicher = speicherSec;
-    }
     @Override
-    @SuppressWarnings("unchecked")
-    public void insert(Object e) {
-        if(operationCounter == randomValue){
-            randomValue = random.nextInt(3) +2;
-            operationCounter = 1;
+    public void insert(T e) {
+        if(countOperations == start){
+            countOperations = 0;
+            start = random.nextInt(3) + 2;
             return;
         }
-        if(checkIfFull()){
-            doublePuffer();
-            speicher[counter++] = (T) e;
+        if (speicher.length == counter){
+            T[] puffer = createDoubleArray();
+            for(int i = 0; i < counter; i++){
+                puffer[i] = speicher[i];
+            }
+            speicher = puffer;
         }
-        else {
-            speicher[counter++] = (T) e;
-        }
-        operationCounter++;
+        countOperations++;
+        speicher[counter++] = e;
     }
 
     @Override
-    public Object remove() {
+    public T remove() {
         if(isEmpty()){
             return null;
         }
-        if(checkIfToMuch()){
-            shrinkPuffer();
+        T returnValue;
+        if(counter - 1 <= (speicher.length / 4)){
+            returnValue = speicher[counter - 1];
+            T[] puffer = createSplitArray();
+            for (int i = 0; i < counter -1; i++){
+                puffer[i] = speicher[i];
+            }
+            speicher = puffer;
             counter--;
-            return null;
         }
         else {
-            Object ret = speicher[counter];
+            returnValue = speicher[counter - 1];
             speicher[--counter] = null;
-            return ret;
         }
+        return returnValue;
     }
 
     @Override
@@ -89,15 +78,13 @@ public class Speicher1<T> implements SpeicherIF{
         return counter;
     }
 
-    @Override
     public String toString(){
-        String ret = "[";
+        String returnValue = "[";
         for (T element : speicher){
             if(element != null) {
-                ret += element + ",";
+                returnValue += element + ",";
             }
         }
-        ret = ret.substring(0, ret.length() - 1) + "]";
-        return ret.length() == 1 ? "[]" : ret;
+        return isEmpty()? "[]" : (returnValue.substring(0,returnValue.length() -1) + "]");
     }
 }
