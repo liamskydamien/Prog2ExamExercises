@@ -7,8 +7,7 @@ import java.util.Random;
  */
 public class Speicher1<T> implements SpeicherIF<T>{
     //Array to store the values
-    @SuppressWarnings("unchecked")
-    protected T[] speicher = (T[]) new Object[1];
+    protected T[] speicher;
 
     // Counters for inserted Objects and insertions
     protected int counter = 0;
@@ -19,12 +18,33 @@ public class Speicher1<T> implements SpeicherIF<T>{
     protected int start = random.nextInt(3) + 2;
 
     @SuppressWarnings("unchecked")
-    private T[] createDoubleArray(){
+    public Speicher1(){
+        speicher = (T[]) new Object[1];
+    }
+
+    @SuppressWarnings("unchecked")
+    public Speicher1(boolean isComparable){
+        if(isComparable){
+            speicher = (T[]) new Comparable[1];
+        }
+        else {
+            speicher = (T[]) new Object[1];
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    protected T[] createDoubleArray(){
+        if(speicher instanceof Comparable[]){
+            return (T[]) new Comparable[speicher.length * 2];
+        }
         return (T[]) new Object[speicher.length * 2];
     }
 
     @SuppressWarnings("unchecked")
     private T[] createSplitArray(){
+        if(speicher instanceof Comparable[]){
+            return (T[]) new Comparable[speicher.length / 2];
+        }
         return (T[]) new Object[speicher.length / 2];
     }
 
