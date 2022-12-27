@@ -51,4 +51,17 @@ public class Speicher1UnitTest {
             System.out.println(testSpeicher);
         }
     }
+
+    @Test
+    void iterate(){
+        IterierbarerSpeicher<Character> testSpeicher = new IterierbarerSpeicher<>();
+        for(Character character : testArray){
+            testSpeicher.insert(character);
+            //assertTrue(testSpeicher.size() == ++counter);
+            System.out.println(testSpeicher);
+        }
+        for (Character character : testSpeicher){
+            System.out.print(character);
+        }
+    }
 }
