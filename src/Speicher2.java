@@ -70,4 +70,16 @@ public class Speicher2<T> implements SpeicherIF<T>{
     public int size() {
         return size;
     }
+
+    @Override
+    public String toString(){
+        String returnValue = "[";
+        Node<T> current = first;
+        while (current != null){
+            returnValue += current.getValue() + ",";
+            current = current.getNextNode();
+        }
+        return isEmpty()? "[]" : (returnValue.substring(0,returnValue.length() -1) + "]");
+    }
+
 }
