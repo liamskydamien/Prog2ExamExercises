@@ -1,5 +1,7 @@
+package ErsteProbeklausur;
+
 /**
- * Bounds
+ * ErsteProbeklausur.Bounds
  * Name:
  * Matrikelnummer:
  */

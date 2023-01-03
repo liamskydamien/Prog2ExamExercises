@@ -1,3 +1,5 @@
+package ErsteProbeklausur;
+
 public class Main {
     public static void main(String[] args) {
         Paar < Integer > src = new Paar < >(1 ,2) ;

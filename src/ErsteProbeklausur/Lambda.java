@@ -1,4 +1,4 @@
-import java.util.Comparator;
+package ErsteProbeklausur;
 
 /**
  * Lambdafunktion
@@ -32,6 +32,6 @@ public class Lambda {
 				}
 			}
 		});
-		System.out.println("Paar("+p1+","+p2+").myCompare(...) = "+res);
+		System.out.println("ErsteProbeklausur.Paar("+p1+","+p2+").myCompare(...) = "+res);
 	}
 }

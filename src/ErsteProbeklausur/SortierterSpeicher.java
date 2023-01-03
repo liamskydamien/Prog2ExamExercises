@@ -1,3 +1,5 @@
+package ErsteProbeklausur;
+
 /*
  * 2.2.2022 Klausur Programmieren 2
  * Name:

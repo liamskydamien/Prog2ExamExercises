@@ -1,5 +1,7 @@
+package ErsteProbeklausur;
+
 /*
- * Die Schnittstelle SpeicherIF beschreibt Methoden zum Zugriff auf einen Speicher.
+ * Die Schnittstelle ErsteProbeklausur.SpeicherIF beschreibt Methoden zum Zugriff auf einen Speicher.
  */
 public interface SpeicherIF<T> {
 	// Fuege das Element 'e' in den Speicher ein

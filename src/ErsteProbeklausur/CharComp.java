@@ -1,4 +1,4 @@
-/**
+package ErsteProbeklausur; /**
  * Comparator für Character
  */
 import java.util.Comparator;
