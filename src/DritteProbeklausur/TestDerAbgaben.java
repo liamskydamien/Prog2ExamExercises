@@ -33,4 +33,15 @@ public class TestDerAbgaben {
         Kellerspeicher<Integer> integers = new Kellerspeicher<>();
         assertThrows(ArrayIndexOutOfBoundsException.class, integers::pop);
     }
+
+    @Test
+    void testeAllesKopiert(){
+        Kellerspeicher<Integer> integers = new Kellerspeicher<>();
+        Kellerspeicher<Number> numbers = new Kellerspeicher<>();
+        for (int i = 0; i < 10; i++) {
+            integers.push(i);
+        }
+        Util.ksCopy(integers, numbers);
+        assertEquals(10,numbers.size());
+    }
 }
