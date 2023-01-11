@@ -1,9 +1,11 @@
 package DritteProbeklausur;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestClassOrder;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -43,5 +45,16 @@ public class TestDerAbgaben {
         }
         Util.ksCopy(integers, numbers);
         assertEquals(10,numbers.size());
+    }
+
+    @Test
+    void testeDurchlauf(){
+        Integer[][] integers = {{1,2,3},{4,5,6},{7,8,9}};
+        A2D<Integer> a2d = new A2D<>(3,3, integers);
+
+        for (int e : a2d){
+            System.out.println(e);
+        }
+
     }
 }
