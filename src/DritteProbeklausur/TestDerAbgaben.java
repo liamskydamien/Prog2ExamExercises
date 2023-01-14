@@ -53,7 +53,15 @@ public class TestDerAbgaben {
         A2D<Integer> a2d = new A2D<>(3,3, integers);
 
         for (int e : a2d){
-            System.out.println(e);
+            System.out.print(e);
+        }
+
+        System.out.println();
+
+        VierteKlausur.A2D<Integer> a3d = new VierteKlausur.A2D<>(3,3, integers);
+
+        for (int e : a3d){
+            System.out.print(e);
         }
 
     }
