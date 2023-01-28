@@ -29,8 +29,11 @@ public class DynArray<T> implements Speicher<T> {
         speicher = newArray;
     }
 
+    @SuppressWarnings("unchecked")
     private void createHalfArray(){
-
+        T[] newArray = (T[]) new Object[size / 2];
+        if (size >= 0) System.arraycopy(speicher, 0, newArray, 0, size);
+        speicher = newArray;
     }
 
     @Override
@@ -40,6 +43,23 @@ public class DynArray<T> implements Speicher<T> {
         }
         else {
             T retValue = speicher[--size];
+            if(size <= speicher.length / 4){
+                createHalfArray();
+            }
+            return retValue;
+        }
+    }
+
+    public T removeFirst(){
+        if (isEmpty()){
+            return null;
+        }
+        else {
+            T retValue = speicher[0];
+            for (int i = 1; i < speicher.length; i++) {
+                speicher[i-1] = speicher[i];
+            }
+            size--;
             if(size <= speicher.length / 4){
                 createHalfArray();
             }
