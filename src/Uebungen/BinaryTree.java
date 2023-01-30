@@ -2,9 +2,10 @@ package Uebungen;
 
 public class BinaryTree<T extends Comparable<T>> {
     private class Node{
+
         private Node right = null;
         private Node left = null;
-        private final T value;
+        private T value;
 
         public Node(T value){
             this.value = value;
@@ -95,15 +96,40 @@ public class BinaryTree<T extends Comparable<T>> {
         }
     }
 
-    public void delete(T e){
+    private Node deleteRecursively(Node root, T value) {
+        if (root == null)
+            return null;
+        if (value.compareTo(root.getValue()) > 0) {
+            root.setLeft(deleteRecursively(root.left, value));
+        } else if (value.compareTo(root.getValue()) < 0) {
+            root.setRight(deleteRecursively(root.right, value));
+        } else {
+
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null)
+                return root.left;
+
+            root.value = inOrderSuccessor(root.getRight());
+            root.setRight(deleteRecursively(root.right, root.value));
+        }
+
+        return root;
 
     }
 
-    private void rekDelete(T e, Node node){
-        int i = node.getValue().compareTo(e);
-        if(i < 0){
+    public void delete(T e){
+        deleteRecursively(root,e);
+    }
 
+    public T inOrderSuccessor(Node root) {
+        T minimum = root.value;
+        while (root.left != null) {
+            minimum = root.left.value;
+            root = root.left;
         }
+        return minimum;
     }
 
 }
+
