@@ -8,7 +8,7 @@ public class StinkiRingPuffer<T> implements Iterable<T>{
         int current = read;
         @Override
         public boolean hasNext() {
-            return current < pos;
+            return current <= pos;
         }
 
         @Override
