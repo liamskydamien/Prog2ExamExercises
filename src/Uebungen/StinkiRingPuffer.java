@@ -1,8 +1,23 @@
 package Uebungen;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class StinkiRingPuffer<T> {
+public class StinkiRingPuffer<T> implements Iterable<T>{
+    private class RPIterator implements Iterator<T>{
+        int current = read;
+        @Override
+        public boolean hasNext() {
+            return current < pos;
+        }
+
+        @Override
+        public T next() {
+            T retVal = speicher[current % size];
+            current++;
+            return retVal;
+        }
+    }
     private T[] speicher;
     private int pos = -1;
 
@@ -44,7 +59,8 @@ public class StinkiRingPuffer<T> {
     }
 
 
-
-
-
+    @Override
+    public Iterator<T> iterator() {
+        return new RPIterator();
+    }
 }
